@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 19 août 2022 à 03:24
--- Version du serveur : 10.4.24-MariaDB
--- Version de PHP : 7.4.29
+-- Généré le : mar. 23 août 2022 à 03:15
+-- Version du serveur : 10.4.22-MariaDB
+-- Version de PHP : 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,10 +29,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `bonplan` (
   `id_plan` int(250) NOT NULL,
-  `nom_bonplan` int(250) NOT NULL,
-  `adresse` int(250) NOT NULL,
-  `description_bonplan` int(250) NOT NULL,
-  `id_categorie` int(255) NOT NULL
+  `nom_bonplan` varchar(250) NOT NULL,
+  `adresse` varchar(250) NOT NULL,
+  `description_bonplan` varchar(2000) NOT NULL,
+  `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -42,8 +42,8 @@ CREATE TABLE `bonplan` (
 --
 
 CREATE TABLE `categorie` (
-  `id_categorie` int(11) NOT NULL,
-  `type_categorie` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `type_categorie` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -105,8 +105,7 @@ CREATE TABLE `promo` (
 --
 
 INSERT INTO `promo` (`id_promo`, `date_expiration`, `pourcentage_reduction`, `id_utilisateur`) VALUES
-(1, '2022-08-11', 50, 1),
-(2, '2022-08-17', 30, 2);
+(10, '2022-08-01', 20, 10);
 
 -- --------------------------------------------------------
 
@@ -136,16 +135,19 @@ CREATE TABLE `utilisateur` (
   `login` varchar(50) NOT NULL,
   `mdp` varchar(50) NOT NULL,
   `tel` int(20) NOT NULL,
-  `role` varchar(50) NOT NULL
+  `role` varchar(50) NOT NULL,
+  `adresse` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `mail`, `login`, `mdp`, `tel`, `role`) VALUES
-(1, 'wissem', 'samtouni', 'sa.wissem.11@gmail.com', 'wissemsm', '12345678', 93834278, 'utilisateur'),
-(2, 'rabie', 'zouita', 'rabie@gmail.com', 'rabiezt', '12345678', 23542879, 'utilisateur');
+INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `mail`, `login`, `mdp`, `tel`, `role`, `adresse`) VALUES
+(10, 'ahmed', 'jbeli', 'ahmed.jbeli@esprit.tn', 'ahmed', '7c222fb2927d828af22f592134e8932480637c0d', 93834278, 'Client', 'lkef'),
+(11, 'hamza', 'laamari', 'hamza@esprit', 'hamza', '7c222fb2927d828af22f592134e8932480637c0d', 12365478, 'Client', 'lkef'),
+(12, 'wissem', 'samtouni', 'sa.wissem.11@esprit.tn', 'wissemsamtouni', '7c222fb2927d828af22f592134e8932480637c0d', 93834278, 'Admin', 'GHARDIMAOU'),
+(13, 'rabie', 'zouita', 'rabie.zouita@esprit.tn', 'rabie', '7c222fb2927d828af22f592134e8932480637c0d', 93936565, 'Client', 'kef');
 
 --
 -- Index pour les tables déchargées
@@ -156,13 +158,13 @@ INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `mail`, `login`, `
 --
 ALTER TABLE `bonplan`
   ADD PRIMARY KEY (`id_plan`),
-  ADD KEY `id_categorie` (`id_categorie`);
+  ADD KEY `id_categorie` (`id`);
 
 --
 -- Index pour la table `categorie`
 --
 ALTER TABLE `categorie`
-  ADD PRIMARY KEY (`id_categorie`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `evennement`
@@ -220,7 +222,7 @@ ALTER TABLE `bonplan`
 -- AUTO_INCREMENT pour la table `categorie`
 --
 ALTER TABLE `categorie`
-  MODIFY `id_categorie` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `evennement`
@@ -238,7 +240,7 @@ ALTER TABLE `location`
 -- AUTO_INCREMENT pour la table `promo`
 --
 ALTER TABLE `promo`
-  MODIFY `id_promo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_promo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `reservation`
@@ -250,7 +252,7 @@ ALTER TABLE `reservation`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Contraintes pour les tables déchargées
@@ -260,7 +262,7 @@ ALTER TABLE `utilisateur`
 -- Contraintes pour la table `bonplan`
 --
 ALTER TABLE `bonplan`
-  ADD CONSTRAINT `bonplan_ibfk_1` FOREIGN KEY (`id_categorie`) REFERENCES `categorie` (`id_categorie`);
+  ADD CONSTRAINT `bonplan_ibfk_1` FOREIGN KEY (`id`) REFERENCES `categorie` (`id`);
 
 --
 -- Contraintes pour la table `location`
@@ -273,7 +275,7 @@ ALTER TABLE `location`
 -- Contraintes pour la table `materiel`
 --
 ALTER TABLE `materiel`
-  ADD CONSTRAINT `materiel_ibfk_1` FOREIGN KEY (`id_categorie`) REFERENCES `categorie` (`id_categorie`);
+  ADD CONSTRAINT `materiel_ibfk_1` FOREIGN KEY (`id_categorie`) REFERENCES `categorie` (`id`);
 
 --
 -- Contraintes pour la table `promo`
