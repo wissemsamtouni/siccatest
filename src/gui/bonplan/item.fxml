@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="294.0" prefWidth="162.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="gui.bonplan.ItemController">
+   <children>
+      <HBox alignment="CENTER_LEFT" layoutY="2.0" prefHeight="74.0" prefWidth="200.0" spacing="20.0">
+         <children>
+            <Label fx:id="lnom" prefHeight="28.0" prefWidth="84.0" text="Label" />
+            <Label fx:id="lcategorie" prefHeight="28.0" prefWidth="90.0" text="Label" />
+         </children>
+      </HBox>
+      <VBox alignment="CENTER" layoutY="81.0" prefHeight="213.0" prefWidth="174.0">
+         <children>
+            <ImageView fx:id="imagebp" fitHeight="208.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

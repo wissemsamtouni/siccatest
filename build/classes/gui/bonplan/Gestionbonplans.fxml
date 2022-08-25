@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.bonplan.GestionbonplansController">
+   <children>
+      <VBox layoutX="14.0" layoutY="20.0" prefHeight="329.0" prefWidth="118.0" spacing="20.0">
+         <children>
+            <Label text="Nom Bonplan" textFill="#cd0f0f">
+               <font>
+                  <Font name="Times New Roman Bold" size="17.0" />
+               </font></Label>
+            <VBox prefHeight="43.0" prefWidth="118.0">
+               <children>
+                  <Label prefHeight="20.0" prefWidth="159.0" text="Saisir Catégorie" textFill="#cd0f0f">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Times New Roman Bold" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Label text="Adresse" textFill="#cd0f0f">
+               <font>
+                  <Font name="Times New Roman Bold" size="17.0" />
+               </font></Label>
+            <Button mnemonicParsing="false" onAction="#uploadimage" prefHeight="33.0" prefWidth="109.0" text="upload image" />
+            <Label text="Déscription" textFill="#cd0f0f">
+               <font>
+                  <Font name="Times New Roman Bold" size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="142.0" layoutY="20.0" prefHeight="488.0" prefWidth="149.0" spacing="16.0">
+         <children>
+            <TextField fx:id="tfbonplan" style="-fx-background-color: #ffffff; -fx-background-radius: 30;" />
+            <TextField fx:id="tfcategorie" style="-fx-background-color: #ffffff; -fx-background-radius: 30;" />
+            <TextField fx:id="tfadresse" style="-fx-background-color: #ffffff; -fx-background-radius: 30;" />
+            <TextArea fx:id="taimage" prefHeight="50.0" prefWidth="149.0" />
+            <TextArea fx:id="tadescription" prefHeight="151.0" prefWidth="149.0" />
+            <TextField fx:id="tfidbp" visible="false" />
+         </children>
+      </VBox>
+      <TableView fx:id="tvbonplan" layoutX="311.0" layoutY="20.0" onMouseClicked="#getSelected1" onMouseEntered="#getSelected1" prefHeight="267.0" prefWidth="566.0">
+        <columns>
+          <TableColumn fx:id="colidplon" prefWidth="38.0" text="ID" />
+          <TableColumn fx:id="colnombonplan" prefWidth="102.0" text="Nom Bonplan" />
+            <TableColumn fx:id="coladresse" prefWidth="79.0" text="Adresse" />
+            <TableColumn fx:id="colcategoriebp" prefWidth="102.0" text="Catégorie" />
+            <TableColumn fx:id="coldescriptionbp" prefWidth="272.0" text="Description" />
+        </columns>
+      </TableView>
+      <TextField fx:id="txtid" layoutY="50.0" visible="false" />
+      <HBox alignment="CENTER_LEFT" layoutX="8.0" layoutY="495.0" prefHeight="100.0" prefWidth="303.0" spacing="20.0">
+         <children>
+            <Button fx:id="btnajouter" mnemonicParsing="false" onAction="#addbonplans" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: blue;" text="Ajouter" textFill="#ffffffeb">
+               <font>
+                  <Font name="Times New Roman Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnmodifier" mnemonicParsing="false" onAction="#modifybonplans" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: green;" text="Modifier" textFill="#f8f6f6">
+               <font>
+                  <Font name="Times New Roman Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnsupprimer" mnemonicParsing="false" onAction="#deletebonplan" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: red;" text="Supprimer" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="559.0" layoutY="495.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="btmannuler" mnemonicParsing="false" onAction="#reset" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #edff53;" text="Annuler" textFill="#e10f0f" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="375.0" layoutY="305.0" prefHeight="203.0" prefWidth="439.0" style="-fx-background-color: #ffffff; -fx-background-radius: 30;">
+         <children>
+            <ImageView fx:id="img" fitHeight="167.0" fitWidth="213.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
