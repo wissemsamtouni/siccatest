@@ -18,14 +18,14 @@ public class Bonplans {
     private String type_categorie;
     private String adresse;
     private String description;
-    private Blob images;
+    private String images;
  
    
 
     public Bonplans() {
     }
 
-    public Bonplans(String nom_bonplan, String type_categorie, String adresse, String description, Blob images) {
+    public Bonplans(String nom_bonplan, String type_categorie, String adresse, String description, String images) {
         this.nom_bonplan = nom_bonplan;
         this.type_categorie = type_categorie;
         this.adresse = adresse;
@@ -33,7 +33,7 @@ public class Bonplans {
         this.images = images;
     }
 
-    public Bonplans(int id_plan, String nom_bonplan, String type_categorie, String adresse, String description, Blob images) {
+    public Bonplans(int id_plan, String nom_bonplan, String type_categorie, String adresse, String description, String images) {
         this.id_plan = id_plan;
         this.nom_bonplan = nom_bonplan;
         this.type_categorie = type_categorie;
@@ -82,11 +82,11 @@ public class Bonplans {
         this.description = description;
     }
 
-    public Blob getImages() {
+    public String getImages() {
         return images;
     }
 
-    public void setImages(Blob images) {
+    public void setImages(String images) {
         this.images = images;
     }
 

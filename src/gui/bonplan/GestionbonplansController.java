@@ -9,9 +9,12 @@ import interfaces.Bpinerface;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.sql.Blob;
 import java.sql.Connection;
+import java.util.Random;
 
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -48,7 +51,7 @@ public class GestionbonplansController implements Initializable {
     private TextField tfadresse;
     @FXML
     private TextField tfbonplan;
-   
+
     @FXML
     private TextArea tadescription;
     @FXML
@@ -70,18 +73,19 @@ public class GestionbonplansController implements Initializable {
     private Button btnmodifier;
     @FXML
     private Button btnsupprimer;
-   
+
     @FXML
     private TextField tfcategorie;
     @FXML
     private Button btmannuler;
-final FileChooser fc=new FileChooser();
-private File file;
+    final FileChooser fc = new FileChooser();
+    private File file;
+    File xxx = null;
     /**
      * Initializes the controller class.
      */
     ObservableList<Bonplans> tbp = FXCollections.observableArrayList();
-   
+
     int index = -1;
 
     @FXML
@@ -102,11 +106,8 @@ private File file;
 
     public void initialize(URL url, ResourceBundle rb) {
 
-        
         showtablebp();
-      
 
-        
         tbp.clear();
     }
     ////////***** deuxieme méthoder******///////
@@ -174,49 +175,45 @@ private File file;
 //        tvcategorie.setItems(dataList);
 //    }
     @FXML
-    private void reset(ActionEvent event){
+    private void reset(ActionEvent event) {
         tfadresse.clear();
         tfbonplan.clear();
         tfcategorie.clear();
         tfidbp.clear();
         tadescription.clear();
         taimage.clear();
-        
+
     }
+
     @FXML
     private void addbonplans(ActionEvent event) {
-        if(tfbonplan.getText().equals("")){
-            showMessageDialog(null,"le chomp bonplan est vide");
+        if (tfbonplan.getText().equals("")) {
+            showMessageDialog(null, "le chomp bonplan est vide");
             tfbonplan.requestFocus();
-        }
-        else if(tfadresse.getText().equals("")){
-            showMessageDialog(null,"le chomp adresse est vide");
+        } else if (tfadresse.getText().equals("")) {
+            showMessageDialog(null, "le chomp adresse est vide");
             tfadresse.requestFocus();
-        }
-         else if(tfcategorie.getText().equals("")){
-            showMessageDialog(null,"le chomp categorie est vide");
+        } else if (tfcategorie.getText().equals("")) {
+            showMessageDialog(null, "le chomp categorie est vide");
             tfcategorie.requestFocus();
-        }
-          else if(tadescription.getText().equals("")){
-            showMessageDialog(null,"le chomp description est vide");
+        } else if (tadescription.getText().equals("")) {
+            showMessageDialog(null, "le chomp description est vide");
             tadescription.requestFocus();
+        } else {
+            Bpinerface bt = new bpservice();
+            Bonplans bp = new Bonplans(tfbonplan.getText(), tfcategorie.getText(), tfadresse.getText(), tadescription.getText(), String.valueOf(xxx));
+            bt.ajouterBP(bp);
+            showtablebp();
+
+            showMessageDialog(null, "Bonplans ajouter avec succes");
+
         }
-        
-        else{
-        Bpinerface bt = new bpservice();
-        Bonplans bp = new Bonplans(tfbonplan.getText(), tfcategorie.getText(), tfadresse.getText(), tadescription.getText(), (Blob) img.getImage());
-        bt.ajouterBP(bp);
-        showtablebp();
-
-
-        showMessageDialog(null, "Bonplans ajouter avec succes");
- 
-    }}
+    }
 
     @FXML
     private void modifybonplans(ActionEvent event) {
         Bpinerface bt = new bpservice();
-        Bonplans bp = new Bonplans(tfbonplan.getText(), tfcategorie.getText(), tfadresse.getText(), tadescription.getText(), (Blob) img.getImage());
+        Bonplans bp = new Bonplans(tfbonplan.getText(), tfcategorie.getText(), tfadresse.getText(), tadescription.getText(), String.valueOf(xxx));
         bt.modifierBP(bp);
         showtablebp();
         showMessageDialog(null, "Bonplan Modifier avec succes");
@@ -225,21 +222,22 @@ private File file;
     @FXML
     private void deletebonplan(ActionEvent event) {
         Bpinerface bt = new bpservice();
-        Bonplans bp = new Bonplans(tfbonplan.getText(), tfcategorie.getText(), tfadresse.getText(), tadescription.getText(), (Blob) img.getImage());
+        Bonplans bp = new Bonplans(tfbonplan.getText(), tfcategorie.getText(), tfadresse.getText(), tadescription.getText(), String.valueOf(xxx));
         bt.supprimerBP(bp);
         showtablebp();
         showMessageDialog(null, "Bonplan Supprimer avec succes");
     }
-   public void showtablebp() {
+
+    public void showtablebp() {
 
         Bpinerface bt = new bpservice();
         ObservableList<Bonplans> tbp = FXCollections.observableArrayList(bt.afficherBP());
         colidplon.setCellValueFactory(new PropertyValueFactory<>("id_plan"));
         colnombonplan.setCellValueFactory(new PropertyValueFactory<>("nom_bonplan"));
         coladresse.setCellValueFactory(new PropertyValueFactory<>("adresse"));
-        coldescriptionbp.setCellValueFactory(new PropertyValueFactory<>("description_bonplan"));
+        coldescriptionbp.setCellValueFactory(new PropertyValueFactory<>("description"));
         colcategoriebp.setCellValueFactory(new PropertyValueFactory<>("type_categorie"));
-      
+
         tvbonplan.setItems(tbp);
     }
 //
@@ -264,7 +262,6 @@ private File file;
 //        showMessageDialog(null, "categorie modifier avec succes");
 //        showtabcat();
 //    }
-
     ////////***** deuxieme méthoder******///////
 //    private void modifycat(ActionEvent event) throws SQLException {
 //        PreparedStatement ps;
@@ -300,10 +297,6 @@ private File file;
 //        tfcategorie.clear();
 //        showtabcat(); 
 //    }
-
-  
- 
-
 //    public void showtabcat() {
 //
 //        Catineterface ct = new catservice();
@@ -314,7 +307,6 @@ private File file;
 //        tvcategorie.setItems(tbc);
 //
 //    }
-
     @FXML
     void getSelected1(MouseEvent event) {
 
@@ -341,28 +333,69 @@ private File file;
 //        txtid.setText(String.valueOf(coloid.getCellData(index)));
 //
 //    }
-
 //    public void init() {
 //        Catineterface ct = new catservice();
 //        ObservableList<Categorie> mList = FXCollections.observableArrayList(ct.afficherCT());
 //        cbcategorie.setItems(mList);
 //    }
-
     @FXML
-    private void uploadimage(ActionEvent event) {
+    private void uploadimage(ActionEvent event) throws IOException {
         fc.setTitle("Uplode Image");
         fc.setInitialDirectory(new File(System.getProperty("user.home")));
         fc.getExtensionFilters().clear();
-        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("all file","*.*"),
-        new FileChooser.ExtensionFilter("Image Files","*.png","*.jpg","*.gif"));
-        File file=fc.showOpenDialog(null);
-        if(file !=null){
-        taimage.appendText(file.getAbsolutePath() +"\n");
-        img.setImage(new Image(file.toURI().toString()));
-        }else {
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("all file", "*.*"),
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+        File file = fc.showOpenDialog(null);
+        if (file != null) {
+
+            String x = file.getAbsolutePath();
+            String newpath = "uploids/produit/";
+            File dir = new File(newpath);
+            if (!dir.exists()) {
+                // folder wa7dd ken barchaa mkdirs
+                dir.mkdirs();
+            }
+            File sourceFile = null;
+            File destinationFile = null;
+            String extension = x.substring(x.lastIndexOf('.') + 1);
+            sourceFile = new File(x);
+            xxx = new File(newpath +randomStringforimage() + "." + extension);
+            Files.copy(sourceFile.toPath(), xxx.toPath());
+            //   System.out.println(destinationFile);
+            System.out.println(xxx);
+            taimage.appendText(file.getAbsolutePath() + "\n");
+            img.setImage(new Image(file.toURI().toString()));
+        } else {
             System.out.println("file is invalide");
         }
     }
+ public static String randomStringforimage(){
+   //   String  randomString  =null;
+           String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-  
+    // create random string builder
+    StringBuilder sb = new StringBuilder();
+
+    // create an object of Random class
+    Random random = new Random();
+
+    // specify length of random string
+    int length = 12;
+
+    for(int i = 0; i < length; i++) {
+
+      // generate random index number
+      int index = random.nextInt(alphabet.length());
+
+      // get character specified by index
+      // from the string
+      char randomChar = alphabet.charAt(index);
+
+      // append the character to string builder
+      sb.append(randomChar);
+    }
+ String randomString = sb.toString();
+   
+   return randomString ;
+    }
 }

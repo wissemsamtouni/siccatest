@@ -36,7 +36,7 @@ public class bpservice implements Bpinerface {
     @Override
     public void ajouterBP(Bonplans bp) {
         String req;
-        req = " INSERT INTO bonplan( id_plan, nom_bonplan, adresse, description_bonplan, type_categorie, images) VALUES (?,?,?,?,?)";
+        req = " INSERT INTO bonplan(  nom_bonplan, adresse, description_bonplan, type_categorie, images) VALUES (?,?,?,?,?)";
 
         PreparedStatement ps;
         try {
@@ -45,15 +45,13 @@ public class bpservice implements Bpinerface {
             ps.setString(2, bp.getAdresse());
             ps.setString(3, bp.getDescription());
             ps.setString(4, bp.getType_categorie()); 
-            InputStream fis =new FileInputStream( (File) bp.getImages());
-           ps.setBlob(5, (InputStream)fis);
+            
+           ps.setString(5, bp.getImages());
             ps.executeUpdate();
             System.out.println("bon plans ajouter avec succé");
         } catch (SQLException ex) {
             Logger.getLogger(bpservice.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(bpservice.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
 
     }
 
@@ -77,7 +75,7 @@ public class bpservice implements Bpinerface {
     public void modifierBP(Bonplans bp) {
 
         String req;
-        req = "UPDATE bonplan SET id_plan=?,nom_bonplan=?,adresse=?,description_bonplan=?,type_categorie=?,images=? WHERE id_plan=?";
+        req = "UPDATE bonplan SET nom_bonplan=?,adresse=?,description_bonplan=?,type_categorie=?,images=? WHERE id_plan='"+bp.getId_plan()+"'";
         PreparedStatement ps;
         try {
             ps = cnx.prepareStatement(req);
@@ -85,12 +83,9 @@ public class bpservice implements Bpinerface {
             ps.setString(2, bp.getAdresse());
             ps.setString(3, bp.getDescription());
             ps.setString(4, bp.getType_categorie());
-            InputStream  fis=new FileInputStream((File) bp.getImages());
-           ps.setBlob(5, (InputStream)fis);
+           ps.setString(5, bp.getImages());
             ps.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(bpservice.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FileNotFoundException ex) {
             Logger.getLogger(bpservice.class.getName()).log(Level.SEVERE, null, ex);
         }
 
