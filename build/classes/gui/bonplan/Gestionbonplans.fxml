@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1300.0" style="-fx-background-color: linear-gradient(to top right,#1e242e,#ae2d3c);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.bonplan.GestionbonplansController">
+   <children>
+      <VBox layoutX="14.0" layoutY="20.0" prefHeight="259.0" prefWidth="118.0" spacing="20.0">
+         <children>
+            <Label text="Nom Bonplan" textFill="#cd0f0f">
+               <font>
+                  <Font name="Times New Roman Bold" size="17.0" />
+               </font></Label>
+            <VBox prefHeight="43.0" prefWidth="118.0">
+               <children>
+                  <Label prefHeight="20.0" prefWidth="159.0" text="Saisir Catégorie" textFill="#cd0f0f">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Times New Roman Bold" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Label text="Adresse" textFill="#cd0f0f">
+               <font>
+                  <Font name="Times New Roman Bold" size="17.0" />
+               </font></Label>
+            <Button mnemonicParsing="false" onAction="#uploadimage" prefHeight="33.0" prefWidth="109.0" style="-fx-background-color: linear-gradient(to bottom right,#35529d,#2371d0); -fx-text-fill: #fff; -fx-font-size: 14; -fx-cursor: hand;" text="Upload Image">
+               <font>
+                  <Font name="Times New Roman" size="15.0" />
+               </font></Button>
+            <Label text="Déscription" textFill="#cd0f0f">
+               <font>
+                  <Font name="Times New Roman Bold" size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox fx:id="ta" layoutX="141.0" layoutY="28.0" prefHeight="131.0" prefWidth="224.0" spacing="20.0">
+         <children>
+            <TextField fx:id="tfbonplan" style="-fx-border-color: #d63333; -fx-border-width: 0px 0px 1px 0px; -fx-background-color: #edff53;" />
+            <TextField fx:id="tfcategorie" style="-fx-border-color: #d63333; -fx-border-width: 0px 0px 1px 0px; -fx-background-color: #edff53;" />
+            <TextField fx:id="tfadresse" style="-fx-border-color: #d63333; -fx-border-width: 0px 0px 1px 0px; -fx-background-color: #edff53;" />
+            <TextField fx:id="taimage" style="-fx-border-color: #d63333; -fx-border-width: 0px 0px 1px 0px; -fx-background-color: #edff53;" />
+            <TextField fx:id="tadescription" prefHeight="174.0" prefWidth="224.0" style="-fx-border-color: #d63333; -fx-border-width: 0px 0px 1px 0px; -fx-background-color: #edff53;" />
+            <TextField fx:id="tfidplan" prefHeight="8.0" prefWidth="224.0" visible="false" />
+            <TextField fx:id="tfidbp" visible="false" />
+         </children>
+      </VBox>
+      <TableView fx:id="tvbonplan" layoutX="465.0" layoutY="20.0" onMouseClicked="#getSelected1" onMouseEntered="#getSelected1" prefHeight="279.0" prefWidth="821.0" style="-fx-background-radius: 30; -fx-background-color: transparent; -fx-border-color: black;">
+        <columns>
+          <TableColumn fx:id="colidplon" prefWidth="38.0" text="ID" />
+          <TableColumn fx:id="colnombonplan" prefWidth="102.0" text="Nom Bonplan" />
+            <TableColumn fx:id="coladresse" prefWidth="79.0" text="Adresse" />
+            <TableColumn fx:id="colcategoriebp" prefWidth="102.0" text="Catégorie" />
+            <TableColumn fx:id="coldescriptionbp" prefWidth="272.0" text="Description" />
+            <TableColumn fx:id="colsrcimage" prefWidth="272.0" text="Image SRC" />
+        </columns>
+      </TableView>
+      <HBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="529.0" prefHeight="100.0" prefWidth="406.0" spacing="10.0">
+         <children>
+            <Button fx:id="btnajouter" mnemonicParsing="false" onAction="#addbonplans" prefHeight="35.0" prefWidth="106.0" style="-fx-background-color: blue;" styleClass="cherche" stylesheets="@../../../build/classes/model/style.css" text="Ajouter" textFill="#ffffffeb">
+               <font>
+                  <Font name="Times New Roman Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnmodifier" mnemonicParsing="false" onAction="#modifybonplans" prefHeight="35.0" prefWidth="103.0" style="-fx-background-color: green;" styleClass="cherche" stylesheets="@../../../build/classes/model/style.css" text="Modifier" textFill="#f8f6f6">
+               <font>
+                  <Font name="Times New Roman Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnsupprimer" mnemonicParsing="false" onAction="#deletebonplan" prefHeight="35.0" prefWidth="106.0" style="-fx-background-color: red;" styleClass="cherche" stylesheets="@../../../build/classes/model/style.css" text="Supprimer" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btmannuler" mnemonicParsing="false" onAction="#reset" prefHeight="35.0" prefWidth="97.0" style="-fx-background-color: #edff53;" styleClass="cherche" stylesheets="@../../../build/classes/model/style.css" text="Annuler" textFill="#e10f0f">
+               <font>
+                  <Font name="Times New Roman Bold" size="16.0" />
+               </font></Button>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="936.0" layoutY="544.0" prefHeight="92.0" prefWidth="359.0" />
+      <ImageView fx:id="img" fitHeight="310.0" fitWidth="338.0" layoutX="422.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="btnshow" layoutX="1038.0" layoutY="378.0" mnemonicParsing="false" onAction="#showlist" text="Button" />
+      <VBox layoutX="14.0" layoutY="359.0" prefHeight="158.0" prefWidth="118.0" spacing="20.0">
+         <children>
+            <Label prefHeight="31.0" prefWidth="101.0" text="ville" textFill="#cd0f0f">
+               <font>
+                  <Font name="Times New Roman Bold" size="17.0" />
+               </font>
+            </Label>
+            <VBox prefHeight="38.0" prefWidth="118.0">
+               <children>
+                  <Label prefHeight="20.0" prefWidth="159.0" text="Latidude" textFill="#cd0f0f">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Times New Roman Bold" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Label text="Logitude" textFill="#cd0f0f">
+               <font>
+                  <Font name="Times New Roman Bold" size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <Label alignment="CENTER" layoutX="61.0" layoutY="322.0" prefHeight="31.0" prefWidth="224.0" text="Maps" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <VBox fx:id="ta1" layoutX="141.0" layoutY="365.0" prefHeight="135.0" prefWidth="224.0" spacing="20.0">
+         <children>
+            <TextField fx:id="tfville" style="-fx-border-color: #d63333; -fx-border-width: 0px 0px 1px 0px; -fx-background-color: #edff53;" />
+            <TextField fx:id="tflatitude" style="-fx-border-color: #d63333; -fx-border-width: 0px 0px 1px 0px; -fx-background-color: #edff53;" />
+            <TextField fx:id="tfllogitude" style="-fx-border-color: #d63333; -fx-border-width: 0px 0px 1px 0px; -fx-background-color: #edff53;" />
+            <TextField fx:id="idmap" prefHeight="174.0" prefWidth="224.0" style="-fx-border-color: #d63333; -fx-border-width: 0px 0px 1px 0px; -fx-background-color: #edff53;" visible="false" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
