@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  * @author ahmed jb
  */
 public class NewFXMain extends Application {
-    
+    public static final String currency="Dinars";
     @Override
     public void start(Stage primaryStage) {
         try {

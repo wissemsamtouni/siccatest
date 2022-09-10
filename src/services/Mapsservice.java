@@ -75,7 +75,7 @@ public class Mapsservice implements Mapsinterface {
     public ObservableList<Maps> affichermaps() {
         ObservableList<Maps> mps = FXCollections.observableArrayList();
         String req;
-        req = " SELECT * FROM `map`";
+        req = " SELECT * FROM map";
         PreparedStatement ps;
         ResultSet rs;
         try {
@@ -107,13 +107,20 @@ public class Mapsservice implements Mapsinterface {
 
         PreparedStatement ps;
         try {
-            ps = cnx.prepareStatement(req);
+           ps = cnx.prepareStatement(req, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, mp.getVille());
             ps.setDouble(2, mp.getLogitude());
             ps.setDouble(3, mp.getLatitude());
 
             ps.executeUpdate();
-            System.out.println("bonjour");
+            System.out.println(" maps modifier avec succé");
+            ResultSet rs = ps.getGeneratedKeys();
+            int generatedKey = 0;
+            if (rs.next()) {
+                generatedKey = rs.getInt(1);
+            }
+            
+            mp.setId_map(generatedKey);
         } catch (SQLException ex) {
             Logger.getLogger(bpservice.class.getName()).log(Level.SEVERE, null, ex);
         }

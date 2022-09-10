@@ -15,7 +15,7 @@
          <children>
             <HBox prefHeight="51.0" prefWidth="185.0">
                <children>
-                  <Label fx:id="nameLabel" prefHeight="49.0" prefWidth="137.0" text="frigua">
+                  <Label fx:id="nameLabel" prefHeight="49.0" prefWidth="137.0" text="frigua" textFill="#a42424">
                      <font>
                         <Font name="Cambria" size="24.0" />
                      </font>

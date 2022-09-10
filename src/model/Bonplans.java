@@ -20,31 +20,57 @@ public class Bonplans {
     private String description;
     private String images;
     private Maps maps;
+    private double frais;
+    private String horaire;
  
    
 
     public Bonplans() {
     }
 
-    public Bonplans(String nom_bonplan, String type_categorie, String adresse, String description, String images) {
-        this.nom_bonplan = nom_bonplan;
-        this.type_categorie = type_categorie;
-        this.adresse = adresse;
-        this.description = description;
-        this.images = images;
-    }
-
-    public Bonplans(int id_plan, String nom_bonplan, String type_categorie, String adresse, String description, String images) {
+    public Bonplans(int id_plan, String nom_bonplan, String type_categorie, String adresse, String description, String images,  double frais, String horaire) {
         this.id_plan = id_plan;
         this.nom_bonplan = nom_bonplan;
         this.type_categorie = type_categorie;
         this.adresse = adresse;
         this.description = description;
         this.images = images;
+       
+        this.frais = frais;
+        this.horaire = horaire;
     }
+
+    public Bonplans(String nom_bonplan, String type_categorie, String adresse, String description, String images, double frais, String horaire) {
+        this.nom_bonplan = nom_bonplan;
+        this.type_categorie = type_categorie;
+        this.adresse = adresse;
+        this.description = description;
+        this.images = images;
+       
+        this.frais = frais;
+        this.horaire = horaire;
+    }
+
+    
 
     public int getId_plan() {
         return id_plan;
+    }
+
+    public double getFrais() {
+        return frais;
+    }
+
+    public void setFrais(double frais) {
+        this.frais = frais;
+    }
+
+    public String getHoraire() {
+        return horaire;
+    }
+
+    public void setHoraire(String horaire) {
+        this.horaire = horaire;
     }
 
     public void setId_plan(int id_plan) {
@@ -101,7 +127,7 @@ public class Bonplans {
 
     @Override
     public String toString() {
-        return "Bonplans{" + "id_plan=" + id_plan + ", nom_bonplan=" + nom_bonplan + ", type_categorie=" + type_categorie + ", adresse=" + adresse + ", description=" + description + ", images=" + images + ", maps=" + maps + '}';
+        return  type_categorie ;
     }
     
 

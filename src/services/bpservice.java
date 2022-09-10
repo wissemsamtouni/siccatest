@@ -7,12 +7,10 @@ package services;
 
 import interfaces.Bpinerface;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,7 +31,7 @@ public class bpservice implements Bpinerface {
     @Override
     public void ajouterBP(Bonplans bp) {
         String req;
-        req = " INSERT INTO bonplan(  nom_bonplan, adresse, description_bonplan, type_categorie, images, id_map) VALUES (?,?,?,?,?, ?)";
+        req = " INSERT INTO bonplan(  nom_bonplan, adresse, description_bonplan, type_categorie, images, id_map,frais, horaire) VALUES (?,?,?,?,?,?,?, ?)";
 
         PreparedStatement ps;
         try {
@@ -44,6 +42,8 @@ public class bpservice implements Bpinerface {
             ps.setString(4, bp.getType_categorie());
             ps.setString(5, bp.getImages());
             ps.setInt(6, bp.getMaps().getId_map());
+            ps.setDouble(7, bp.getFrais());
+            ps.setString(8, bp.getHoraire());
             ps.executeUpdate();
             System.out.println("bon plans ajouter avec succé");
         } catch (SQLException ex) {
@@ -60,7 +60,7 @@ public class bpservice implements Bpinerface {
         PreparedStatement ps;
         try {
             ps = cnx.prepareStatement(req);
-         
+
             ps.execute();
             System.out.println("le bon plan supprimer avec succé");
         } catch (SQLException ex) {
@@ -73,8 +73,8 @@ public class bpservice implements Bpinerface {
     public void modifierBP(Bonplans bp) {
 
         String req;
-        req = "UPDATE bonplan SET nom_bonplan=?,adresse=?,description_bonplan=?,type_categorie=?,images=?,id_map=? WHERE id_plan='" + bp.getId_plan() + "'";
-       
+        req = "UPDATE bonplan SET nom_bonplan=?,adresse=?,description_bonplan=?,type_categorie=?,images=?,id_map=?,frais=?,horaire=? WHERE id_plan='" + bp.getId_plan() + "'";
+
         PreparedStatement ps;
         try {
             ps = cnx.prepareStatement(req);
@@ -83,10 +83,12 @@ public class bpservice implements Bpinerface {
             ps.setString(3, bp.getDescription());
             ps.setString(4, bp.getType_categorie());
             ps.setString(5, bp.getImages());
-             ps.setInt(6, bp.getMaps().getId_map());
-         
+            ps.setInt(6, bp.getMaps().getId_map());
+            ps.setDouble(7, bp.getFrais());
+            ps.setString(8, bp.getHoraire());
+
             ps.executeUpdate();
-           System.out.println("bonjour");   
+            System.out.println("bonjour");
         } catch (SQLException ex) {
             Logger.getLogger(bpservice.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -112,7 +114,8 @@ public class bpservice implements Bpinerface {
                 bt.setDescription(rs.getString("description_bonplan"));
                 bt.setType_categorie(rs.getString("type_categorie"));
                 bt.setImages(rs.getString("images"));
-  
+                bt.setHoraire(rs.getString("horaire"));
+                bt.setFrais(rs.getDouble("frais"));
                 bpl.add(bt);
             }
 

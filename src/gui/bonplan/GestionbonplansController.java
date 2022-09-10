@@ -93,7 +93,7 @@ public class GestionbonplansController implements Initializable {
      * Initializes the controller class.
      */
     ObservableList<Bonplans> tbp = FXCollections.observableArrayList();
-
+    ObservableList<Maps> mpb = FXCollections.observableArrayList();
     int index = -1;
 
     @FXML
@@ -121,6 +121,24 @@ public class GestionbonplansController implements Initializable {
     private TextField tfllogitude;
     @FXML
     private TextField idmap;
+    @FXML
+    private TextField tffrais;
+    @FXML
+    private TextField tfhoraire;
+    @FXML
+    private TableView<Maps> tvbonplan1;
+    @FXML
+    private TableColumn<Maps, Integer> colidmap;
+    @FXML
+    private TableColumn<Maps, String> colvile;
+    @FXML
+    private TableColumn<Maps, Double> collogitude;
+    @FXML
+    private TableColumn<Maps, Double> collatidude;
+    @FXML
+    private TableColumn<Bonplans, Double> colfrais;
+    @FXML
+    private TableColumn<Bonplans, String> colhorair;
 
 //    public GestionbonplansController() {
 //        this.tbp = FXCollections.observableArrayList();
@@ -128,7 +146,7 @@ public class GestionbonplansController implements Initializable {
     @Override
 
     public void initialize(URL url, ResourceBundle rb) {
-
+        showtablebp1();
         showtablebp();
 
         tbp.clear();
@@ -161,11 +179,11 @@ public class GestionbonplansController implements Initializable {
             tadescription.requestFocus();
         } else {
             Bpinerface bt = new bpservice();
-            Mapsinterface mps=new Mapsservice();
-            Maps mp=new Maps(tfville.getText(), Double.parseDouble(tfllogitude.getText()),  Double.parseDouble(tflatitude.getText()));
+            Mapsinterface mps = new Mapsservice();
+            Maps mp = new Maps(tfville.getText(), Double.parseDouble(tfllogitude.getText()), Double.parseDouble(tflatitude.getText()));
             Maps generatedMaps = mps.ajoutermaps(mp);
             //..
-            Bonplans bp = new Bonplans(tfbonplan.getText(), tfcategorie.getText(), tfadresse.getText(), tadescription.getText(), String.valueOf(xxx));
+            Bonplans bp = new Bonplans(tfbonplan.getText(), tfcategorie.getText(), tfadresse.getText(), tadescription.getText(), String.valueOf(xxx), Double.parseDouble(tffrais.getText()), tfhoraire.getText());
             bp.setMaps(generatedMaps);
             bt.ajouterBP(bp);
             showtablebp();
@@ -175,15 +193,14 @@ public class GestionbonplansController implements Initializable {
         }
     }
 
-   
-    
-    
-    
-    
     @FXML
     private void modifybonplans(ActionEvent event) {
         Bpinerface bt = new bpservice();
-        Bonplans bp = new Bonplans(Integer.parseInt(tfidplan.getText()), tfbonplan.getText(), tfcategorie.getText(), tfadresse.getText(), tadescription.getText(), String.valueOf(xxx));
+        Mapsinterface mps = new Mapsservice();
+        Maps mp = new Maps(Integer.parseInt(idmap.getText()), tfville.getText(), Double.parseDouble(tfllogitude.getText()), Double.parseDouble(tflatitude.getText()));
+        mps.modifiermaps(mp);
+        //.... 
+        Bonplans bp = new Bonplans(Integer.parseInt(tfidplan.getText()), tfbonplan.getText(), tfcategorie.getText(), tfadresse.getText(), tadescription.getText(), String.valueOf(xxx), Double.parseDouble(tffrais.getText()), tfhoraire.getText());
         bt.modifierBP(bp);
         showtablebp();
         showMessageDialog(null, "Bonplan Modifier avec succes");
@@ -192,7 +209,11 @@ public class GestionbonplansController implements Initializable {
     @FXML
     private void deletebonplan(ActionEvent event) {
         Bpinerface bt = new bpservice();
-        Bonplans bp = new Bonplans(Integer.parseInt(tfidplan.getText()), tfbonplan.getText(), tfcategorie.getText(), tfadresse.getText(), tadescription.getText(), String.valueOf(xxx));
+        Mapsinterface mps = new Mapsservice();
+        Maps mp = new Maps(Integer.parseInt(idmap.getText()), tfville.getText(), Double.parseDouble(tfllogitude.getText()), Double.parseDouble(tflatitude.getText()));
+        mps.supprimermaps(mp);
+        Bonplans bp = new Bonplans(Integer.parseInt(tfidplan.getText()), tfbonplan.getText(), tfcategorie.getText(), tfadresse.getText(), tadescription.getText(), String.valueOf(xxx), Double.parseDouble(tffrais.getText()), tfhoraire.getText());
+
         bt.supprimerBP(bp);
         showtablebp();
         showMessageDialog(null, "Bonplan Supprimer avec succes");
@@ -208,8 +229,22 @@ public class GestionbonplansController implements Initializable {
         coldescriptionbp.setCellValueFactory(new PropertyValueFactory<>("description"));
         colcategoriebp.setCellValueFactory(new PropertyValueFactory<>("type_categorie"));
         colsrcimage.setCellValueFactory(new PropertyValueFactory<>("images"));
-
+        colfrais.setCellValueFactory(new PropertyValueFactory<>("frais"));
+        colhorair.setCellValueFactory(new PropertyValueFactory<>("horaire"));
         tvbonplan.setItems(tbp);
+
+    }
+
+    public void showtablebp1() {
+        Mapsinterface mps = new Mapsservice();
+
+        ObservableList<Maps> mpb = FXCollections.observableArrayList(mps.affichermaps());
+        colidmap.setCellValueFactory(new PropertyValueFactory<>("id_map"));
+        colvile.setCellValueFactory(new PropertyValueFactory<>("ville"));
+        collogitude.setCellValueFactory(new PropertyValueFactory<>("logitude"));
+        collatidude.setCellValueFactory(new PropertyValueFactory<>("latitude"));
+
+        tvbonplan1.setItems(mpb);
     }
 //
 //    private void addcat(ActionEvent event) {
@@ -281,6 +316,15 @@ public class GestionbonplansController implements Initializable {
     @FXML
     void getSelected1(MouseEvent event) {
 
+        index = tvbonplan1.getSelectionModel().getSelectedIndex();
+        if (index <= -1) {
+            return;
+        }
+         idmap.setText(colidmap.getCellData(index).toString());
+        tfville.setText(colvile.getCellData(index));
+        tflatitude.setText(collatidude.getCellData(index).toString());
+        tfllogitude.setText(collogitude.getCellData(index).toString()                                                                                   );
+        
         index = tvbonplan.getSelectionModel().getSelectedIndex();
         if (index <= -1) {
             return;
@@ -291,6 +335,9 @@ public class GestionbonplansController implements Initializable {
         tfadresse.setText(coladresse.getCellData(index));
         tfcategorie.setText(colcategoriebp.getCellData(index));
         tadescription.setText(coldescriptionbp.getCellData(index));
+        tffrais.setText(colfrais.getCellData(index).toString());
+        tfhoraire.setText(colhorair.getCellData(index));
+        
         taimage.setText(colsrcimage.getCellData(index));
         String path = colsrcimage.getCellData(index);
         Image image = new Image("file:" + path);
