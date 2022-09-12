@@ -57,7 +57,7 @@ public class Mapsservice implements Mapsinterface {
     }
 
     @Override
-    public void supprimermaps(Maps mp) {
+    public Maps supprimermaps(Maps mp) {
         String req;
         req = "DELETE FROM `map` WHERE id_map='" + mp.getId_map() + "'";
         PreparedStatement ps;
@@ -69,6 +69,7 @@ public class Mapsservice implements Mapsinterface {
         } catch (SQLException ex) {
             Logger.getLogger(bpservice.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return mp;
     }
 
     @Override
@@ -101,18 +102,21 @@ public class Mapsservice implements Mapsinterface {
     }
 
     @Override
-    public void modifiermaps(Maps mp) {
+    public Maps  modifiermaps(Maps mp) {
         String req;
         req = "UPDATE map SET ville=?,logitude=?,latitude=? WHERE id_plan='" + mp.getId_map() + "'";
 
         PreparedStatement ps;
+         
         try {
            ps = cnx.prepareStatement(req, PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setString(1, mp.getVille());
+       
+           
+           ps.setString(1, mp.getVille());
             ps.setDouble(2, mp.getLogitude());
             ps.setDouble(3, mp.getLatitude());
-
-            ps.executeUpdate();
+   ps.executeUpdate();
+           
             System.out.println(" maps modifier avec succé");
             ResultSet rs = ps.getGeneratedKeys();
             int generatedKey = 0;
@@ -124,5 +128,6 @@ public class Mapsservice implements Mapsinterface {
         } catch (SQLException ex) {
             Logger.getLogger(bpservice.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return mp;
     }
 }

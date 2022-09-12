@@ -40,6 +40,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.management.Notification;
 import static javax.swing.JOptionPane.showMessageDialog;
 import model.Bonplans;
 
@@ -148,8 +149,8 @@ public class GestionbonplansController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         showtablebp1();
         showtablebp();
-
         tbp.clear();
+        mpb.clear();
     }
 
     @FXML
@@ -160,7 +161,11 @@ public class GestionbonplansController implements Initializable {
         tfidbp.clear();
         tadescription.clear();
         taimage.clear();
-
+        tfhoraire.clear();
+        tffrais.clear();
+        tfville.clear();
+        tflatitude.clear();
+        tfllogitude.clear();
     }
 
     @FXML
@@ -198,9 +203,10 @@ public class GestionbonplansController implements Initializable {
         Bpinerface bt = new bpservice();
         Mapsinterface mps = new Mapsservice();
         Maps mp = new Maps(Integer.parseInt(idmap.getText()), tfville.getText(), Double.parseDouble(tfllogitude.getText()), Double.parseDouble(tflatitude.getText()));
-        mps.modifiermaps(mp);
+        Maps generatedMaps = mps.modifiermaps(mp);
         //.... 
         Bonplans bp = new Bonplans(Integer.parseInt(tfidplan.getText()), tfbonplan.getText(), tfcategorie.getText(), tfadresse.getText(), tadescription.getText(), String.valueOf(xxx), Double.parseDouble(tffrais.getText()), tfhoraire.getText());
+        bp.setMaps(generatedMaps);
         bt.modifierBP(bp);
         showtablebp();
         showMessageDialog(null, "Bonplan Modifier avec succes");
@@ -211,12 +217,13 @@ public class GestionbonplansController implements Initializable {
         Bpinerface bt = new bpservice();
         Mapsinterface mps = new Mapsservice();
         Maps mp = new Maps(Integer.parseInt(idmap.getText()), tfville.getText(), Double.parseDouble(tfllogitude.getText()), Double.parseDouble(tflatitude.getText()));
-        mps.supprimermaps(mp);
+        Maps generatedMaps = mps.supprimermaps(mp);
         Bonplans bp = new Bonplans(Integer.parseInt(tfidplan.getText()), tfbonplan.getText(), tfcategorie.getText(), tfadresse.getText(), tadescription.getText(), String.valueOf(xxx), Double.parseDouble(tffrais.getText()), tfhoraire.getText());
-
+        bp.setMaps(generatedMaps);
         bt.supprimerBP(bp);
         showtablebp();
         showMessageDialog(null, "Bonplan Supprimer avec succes");
+         
     }
 
     public void showtablebp() {
@@ -320,11 +327,11 @@ public class GestionbonplansController implements Initializable {
         if (index <= -1) {
             return;
         }
-         idmap.setText(colidmap.getCellData(index).toString());
+        idmap.setText(colidmap.getCellData(index).toString());
         tfville.setText(colvile.getCellData(index));
         tflatitude.setText(collatidude.getCellData(index).toString());
-        tfllogitude.setText(collogitude.getCellData(index).toString()                                                                                   );
-        
+        tfllogitude.setText(collogitude.getCellData(index).toString());
+
         index = tvbonplan.getSelectionModel().getSelectedIndex();
         if (index <= -1) {
             return;
@@ -337,7 +344,7 @@ public class GestionbonplansController implements Initializable {
         tadescription.setText(coldescriptionbp.getCellData(index));
         tffrais.setText(colfrais.getCellData(index).toString());
         tfhoraire.setText(colhorair.getCellData(index));
-        
+
         taimage.setText(colsrcimage.getCellData(index));
         String path = colsrcimage.getCellData(index);
         Image image = new Image("file:" + path);

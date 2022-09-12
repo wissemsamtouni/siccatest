@@ -14,7 +14,7 @@ import model.Maps;
  */
 public interface Mapsinterface {
      public Maps ajoutermaps(Maps mp);
-    public void supprimermaps(Maps mp);
+    public Maps  supprimermaps(Maps mp);
     public ObservableList<Maps> affichermaps();
-    public void modifiermaps(Maps mp);
+    public Maps  modifiermaps(Maps mp);
 }
