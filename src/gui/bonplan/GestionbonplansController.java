@@ -30,6 +30,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -43,7 +44,9 @@ import javafx.stage.Stage;
 import javax.management.Notification;
 import static javax.swing.JOptionPane.showMessageDialog;
 import model.Bonplans;
-
+import model.Categories;
+import interfaces.Icategories;
+import services.Catcategories;
 import services.bpservice;
 
 import util.Myconnexion;
@@ -140,6 +143,20 @@ public class GestionbonplansController implements Initializable {
     private TableColumn<Bonplans, Double> colfrais;
     @FXML
     private TableColumn<Bonplans, String> colhorair;
+    @FXML
+    private ComboBox<Categories> cbcategorie;
+    @FXML
+    private Button btnajouter1;
+    @FXML
+    private Button btnmodifier1;
+    @FXML
+    private Button btnsupprimer1;
+    @FXML
+    private TableView<Categories> tvcategories;
+    @FXML
+    private TableColumn<Categories, Integer> colidcategorie;
+    @FXML
+    private TableColumn<Categories, String> coltypecategorie;
 
 //    public GestionbonplansController() {
 //        this.tbp = FXCollections.observableArrayList();
@@ -188,7 +205,7 @@ public class GestionbonplansController implements Initializable {
             Maps mp = new Maps(tfville.getText(), Double.parseDouble(tfllogitude.getText()), Double.parseDouble(tflatitude.getText()));
             Maps generatedMaps = mps.ajoutermaps(mp);
             //..
-            Bonplans bp = new Bonplans(tfbonplan.getText(), tfcategorie.getText(), tfadresse.getText(), tadescription.getText(), String.valueOf(xxx), Double.parseDouble(tffrais.getText()), tfhoraire.getText());
+            Bonplans bp = new Bonplans(tfbonplan.getText(), cbcategorie.getValue(), tfadresse.getText(), tadescription.getText(), String.valueOf(xxx), Double.parseDouble(tffrais.getText()), tfhoraire.getText());
             bp.setMaps(generatedMaps);
             bt.ajouterBP(bp);
             showtablebp();
@@ -205,7 +222,7 @@ public class GestionbonplansController implements Initializable {
         Maps mp = new Maps(Integer.parseInt(idmap.getText()), tfville.getText(), Double.parseDouble(tfllogitude.getText()), Double.parseDouble(tflatitude.getText()));
         Maps generatedMaps = mps.modifiermaps(mp);
         //.... 
-        Bonplans bp = new Bonplans(Integer.parseInt(tfidplan.getText()), tfbonplan.getText(), tfcategorie.getText(), tfadresse.getText(), tadescription.getText(), String.valueOf(xxx), Double.parseDouble(tffrais.getText()), tfhoraire.getText());
+        Bonplans bp = new Bonplans(Integer.parseInt(tfidplan.getText()), tfbonplan.getText(),cbcategorie.getValue(), tfadresse.getText(), tadescription.getText(), String.valueOf(xxx), Double.parseDouble(tffrais.getText()), tfhoraire.getText());
         bp.setMaps(generatedMaps);
         bt.modifierBP(bp);
         showtablebp();
@@ -218,7 +235,7 @@ public class GestionbonplansController implements Initializable {
         Mapsinterface mps = new Mapsservice();
         Maps mp = new Maps(Integer.parseInt(idmap.getText()), tfville.getText(), Double.parseDouble(tfllogitude.getText()), Double.parseDouble(tflatitude.getText()));
         Maps generatedMaps = mps.supprimermaps(mp);
-        Bonplans bp = new Bonplans(Integer.parseInt(tfidplan.getText()), tfbonplan.getText(), tfcategorie.getText(), tfadresse.getText(), tadescription.getText(), String.valueOf(xxx), Double.parseDouble(tffrais.getText()), tfhoraire.getText());
+        Bonplans bp = new Bonplans(Integer.parseInt(tfidplan.getText()), tfbonplan.getText(), cbcategorie.getValue(), tfadresse.getText(), tadescription.getText(), String.valueOf(xxx), Double.parseDouble(tffrais.getText()), tfhoraire.getText());
         bp.setMaps(generatedMaps);
         bt.supprimerBP(bp);
         showtablebp();
@@ -253,28 +270,9 @@ public class GestionbonplansController implements Initializable {
 
         tvbonplan1.setItems(mpb);
     }
-//
-//    private void addcat(ActionEvent event) {
-//        if(tfcategorie.getText().equals("")){
-//            showMessageDialog(null, "le chomp categorie est vide");
-//        tfcategorie.requestFocus();
-//        }else{
-//        Catineterface ct = new catservice();
-//        Categorie c = new Categorie(tfcategorie.getText());
-//        ct.ajoutercat(c);
-//        showtabcat();
-//        showMessageDialog(null, "categorie ajouter avec succes");
-//        init();
-//    }}
 
-//    private void modifycat(ActionEvent event) {
-//        Integer id = Integer.parseInt(txtid.getText());
-//        Catineterface ct = new catservice();
-//        Categorie c = new Categorie(tfcategorie.getText());
-//        ct.modifiercat(c, id);
-//        showMessageDialog(null, "categorie modifier avec succes");
-//        showtabcat();
-//    }
+
+
     ////////***** deuxieme méthoder******///////
 //    private void modifycat(ActionEvent event) throws SQLException {
 //        PreparedStatement ps;
@@ -289,13 +287,7 @@ public class GestionbonplansController implements Initializable {
 //        tfcategorie.clear();
 //        showtabcat() ;
 //    }
-//    private void deletecat(ActionEvent event) {
-//        Catineterface ct = new catservice();
-//        Categorie c = new Categorie(tfcategorie.getText());
-//        ct.supprimercat(c);
-//        showMessageDialog(null, "categorie supprimer avec succes");
-//        showtabcat();
-//    }
+//  
     ////////***** deuxieme méthoder******///////
 //    private void deletecat(ActionEvent event) throws SQLException {
 //        PreparedStatement ps;
@@ -310,16 +302,16 @@ public class GestionbonplansController implements Initializable {
 //        tfcategorie.clear();
 //        showtabcat(); 
 //    }
-//    public void showtabcat() {
-//
-//        Catineterface ct = new catservice();
-//        ObservableList<Categorie> tbc = FXCollections.observableArrayList(ct.afficherCT());
-//
-//        coloid.setCellValueFactory(new PropertyValueFactory<>("id"));
-//        colcategorie.setCellValueFactory(new PropertyValueFactory<>("type_categorie"));
-//        tvcategorie.setItems(tbc);
-//
-//    }
+    public void showtabcat() {
+
+        Icategories ct = new Catcategories();
+        ObservableList<Categories> tbc = FXCollections.observableArrayList(ct.affichercategorie());
+
+        colidcategorie.setCellValueFactory(new PropertyValueFactory<>("id_cat"));
+        coltypecategorie.setCellValueFactory(new PropertyValueFactory<>("type_categorie"));
+        tvcategories.setItems(tbc);
+
+    }
     @FXML
     void getSelected1(MouseEvent event) {
 
@@ -351,11 +343,11 @@ public class GestionbonplansController implements Initializable {
         this.img.setImage(image);
     }
 
-//    public void init() {
-//        Catineterface ct = new catservice();
-//        ObservableList<Categorie> mList = FXCollections.observableArrayList(ct.afficherCT());
-//        cbcategorie.setItems(mList);
-//    }
+    public void init() {
+        Icategories ct = new Catcategories();
+        ObservableList<Categories> mList = FXCollections.observableArrayList(ct.affichercategorie());
+        cbcategorie.setItems(mList);
+    }
     @FXML
     private void uploadimage(ActionEvent event) throws IOException {
         fc.setTitle("Uplode Image");
@@ -428,6 +420,40 @@ public class GestionbonplansController implements Initializable {
         stage.setScene(scene);
 
         stage.show();
+    }
+
+    @FXML
+    private void addcategorie(ActionEvent event) {
+       if(tfcategorie.getText().equals("")){
+            showMessageDialog(null, "le chomp categorie est vide");
+        tfcategorie.requestFocus();
+        }else{
+        Icategories ct = new Catcategories();
+        Categories c = new Categories(tfcategorie.getText());
+        ct.ajoutercategorie(c);
+        showtabcat();
+        showMessageDialog(null, "categorie ajouter avec succes");
+        init();
+    }
+    }
+
+    @FXML
+    private void modifcategorie(ActionEvent event) {
+//          Integer id = Integer.parseInt(txtid.getText());
+        Icategories ct = new Catcategories();
+        Categories c = new Categories(tfcategorie.getText());
+        ct.modifiercategories(c);
+        showMessageDialog(null, "categorie modifier avec succes");
+        showtabcat();
+    }
+
+    @FXML
+    private void deletecategorie(ActionEvent event) {
+         Icategories ct = new Catcategories();
+        Categories c = new Categories(tfcategorie.getText());
+        ct.supprimercategorie(c);
+        showMessageDialog(null, "categorie supprimer avec succes");
+        showtabcat();
     }
 
 }

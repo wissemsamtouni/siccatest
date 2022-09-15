@@ -31,7 +31,7 @@ public class bpservice implements Bpinerface {
     @Override
     public void ajouterBP(Bonplans bp) {
         String req;
-        req = " INSERT INTO bonplan(  nom_bonplan, adresse, description_bonplan, type_categorie, images, id_map,frais, horaire) VALUES (?,?,?,?,?,?,?, ?)";
+        req = " INSERT INTO bonplan(  nom_bonplan, adresse, description_bonplan, id_cat, images, id_map,frais, horaire) VALUES (?,?,?,?,?,?,?, ?)";
 
         PreparedStatement ps;
         try {
@@ -39,7 +39,7 @@ public class bpservice implements Bpinerface {
             ps.setString(1, bp.getNom_bonplan());
             ps.setString(2, bp.getAdresse());
             ps.setString(3, bp.getDescription());
-            ps.setString(4, bp.getType_categorie());
+            ps.setInt(4, bp.getcategories().getId_cat());
             ps.setString(5, bp.getImages());
             ps.setInt(6, bp.getMaps().getId_map());
             ps.setDouble(7, bp.getFrais());
@@ -73,7 +73,7 @@ public class bpservice implements Bpinerface {
     public void modifierBP(Bonplans bp) {
 
         String req;
-        req = "UPDATE bonplan SET nom_bonplan=?,adresse=?,description_bonplan=?,type_categorie=?,images=?,id_map=?,frais=?,horaire=? WHERE id_plan='" + bp.getId_plan() + "'";
+        req = "UPDATE bonplan SET nom_bonplan=?,adresse=?,description_bonplan=?,id_cat=?,images=?,id_map=?,frais=?,horaire=? WHERE id_plan='" + bp.getId_plan() + "'";
 
         PreparedStatement ps;
         try {
@@ -81,7 +81,7 @@ public class bpservice implements Bpinerface {
             ps.setString(1, bp.getNom_bonplan());
             ps.setString(2, bp.getAdresse());
             ps.setString(3, bp.getDescription());
-            ps.setString(4, bp.getType_categorie());
+           ps.setInt(4, bp.getcategories().getId_cat());
             ps.setString(5, bp.getImages());
             ps.setInt(6, bp.getMaps().getId_map());
             ps.setDouble(7, bp.getFrais());
@@ -112,7 +112,7 @@ public class bpservice implements Bpinerface {
                 bt.setNom_bonplan(rs.getString("nom_bonplan"));
                 bt.setAdresse(rs.getString("adresse"));
                 bt.setDescription(rs.getString("description_bonplan"));
-                bt.setType_categorie(rs.getString("type_categorie"));
+         
                 bt.setImages(rs.getString("images"));
                 bt.setHoraire(rs.getString("horaire"));
                 bt.setFrais(rs.getDouble("frais"));

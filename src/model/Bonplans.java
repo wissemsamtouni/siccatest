@@ -14,24 +14,23 @@ import java.sql.Blob;
 public class Bonplans {
     //var
     private int id_plan;
-    private  String nom_bonplan;
-    private String type_categorie;
+    private  String nom_bonplan; 
     private String adresse;
     private String description;
     private String images;
     private Maps maps;
     private double frais;
     private String horaire;
- 
+ private  Categories categories;
    
 
     public Bonplans() {
     }
 
-    public Bonplans(int id_plan, String nom_bonplan, String type_categorie, String adresse, String description, String images,  double frais, String horaire) {
+    public Bonplans(int id_plan, String nom_bonplan, Categories categories, String adresse, String description, String images,  double frais, String horaire) {
         this.id_plan = id_plan;
         this.nom_bonplan = nom_bonplan;
-        this.type_categorie = type_categorie;
+        this.categories = categories;
         this.adresse = adresse;
         this.description = description;
         this.images = images;
@@ -40,9 +39,9 @@ public class Bonplans {
         this.horaire = horaire;
     }
 
-    public Bonplans(String nom_bonplan, String type_categorie, String adresse, String description, String images, double frais, String horaire) {
+    public Bonplans(String nom_bonplan, Categories categories, String adresse, String description, String images, double frais, String horaire) {
         this.nom_bonplan = nom_bonplan;
-        this.type_categorie = type_categorie;
+        this.categories = categories;
         this.adresse = adresse;
         this.description = description;
         this.images = images;
@@ -85,12 +84,12 @@ public class Bonplans {
         this.nom_bonplan = nom_bonplan;
     }
 
-    public String getType_categorie() {
-        return type_categorie;
+    public Categories getcategories() {
+        return categories;
     }
 
-    public void setType_categorie(String type_categorie) {
-        this.type_categorie = type_categorie;
+    public void setcategories(Categories categories) {
+        this.categories = categories;
     }
 
     public String getAdresse() {
@@ -127,8 +126,10 @@ public class Bonplans {
 
     @Override
     public String toString() {
-        return  type_categorie ;
+        return "Bonplans{" + "id_plan=" + id_plan + ", nom_bonplan=" + nom_bonplan + ", adresse=" + adresse + ", description=" + description + ", images=" + images + ", maps=" + maps + ", frais=" + frais + ", horaire=" + horaire + ", categories=" + categories + '}';
     }
+
+    
     
 
 
