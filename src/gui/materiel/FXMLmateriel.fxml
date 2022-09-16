@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="533.0" prefWidth="705.0" style="-fx-background-color: black;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18">
+   <children>
+      <TextField layoutX="86.0" layoutY="155.0" />
+      <TextField layoutX="86.0" layoutY="201.0" />
+      <TextField layoutX="86.0" layoutY="252.0" />
+      <TextField layoutX="86.0" layoutY="297.0" />
+      <TextField layoutX="86.0" layoutY="339.0" />
+      <TableView layoutX="289.0" layoutY="147.0" prefHeight="218.0" prefWidth="391.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <Text fill="WHITE" layoutX="317.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Materiel" />
+   </children>
+</AnchorPane>
