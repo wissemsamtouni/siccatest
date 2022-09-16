@@ -18,7 +18,7 @@
       <TextField fx:id="IDtel" layoutX="502.0" layoutY="310.0" prefHeight="25.0" prefWidth="184.0" style="-fx-background-color: #545353; -fx-border-color: #fbb117; -fx-border-width: 0px 0px 1.5px 0px; -fx-background-radius: 40px; -fx-border-radius: 40px;" />
       <TextField fx:id="IDadresse" layoutX="502.0" layoutY="354.0" prefHeight="25.0" prefWidth="184.0" style="-fx-background-color: #545353; -fx-border-color: #fbb117; -fx-border-width: 0px 0px  1.5px 0px; -fx-background-radius: 40px; -fx-border-radius: 40px;" />
       <TextField fx:id="IDnom" layoutX="505.0" layoutY="91.0" prefHeight="25.0" prefWidth="184.0" style="-fx-background-color: #545353; -fx-border-color: #fbb117; -fx-border-width: 0px 0px 1.5px 0px; -fx-border-radius: 40px; -fx-background-radius: 40px;" />
-      <Text fill="#f2f0f0" layoutX="475.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTER">
+      <Text fill="#f2f0f0" layoutX="475.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INSCRIPTION">
          <font>
             <Font size="30.0" />
          </font>
