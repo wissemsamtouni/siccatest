@@ -18,5 +18,5 @@ public interface Icategories {
     public void supprimercategorie(Categories cat);
     public ObservableList<Categories> affichercategorie();
     public void modifiercategories(Categories cat);
-
+public void findcatById(Categories id);
 }

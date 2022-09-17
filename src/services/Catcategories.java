@@ -29,18 +29,13 @@ public class Catcategories implements Icategories{
          @Override
     public void ajoutercategorie(Categories cat) {
 
-
-  
         String req;
-        req = "INSERT INTO categories(type_categorie) VALUES (?)";
-
+        req = "INSERT INTO categories(type_categories) VALUES (?)";
         PreparedStatement ps;
         try {
             ps = cnx.prepareStatement(req);
             ps.setString(1, cat.getType_categories());
-           
-         
-            ps.executeUpdate();
+           ps.executeUpdate();
             System.out.println("bon categorie ajouter avec succé");
         } catch (SQLException ex) {
             Logger.getLogger(bpservice.class.getName()).log(Level.SEVERE, null, ex);
@@ -112,7 +107,26 @@ public class Catcategories implements Icategories{
     }
 
    
+   @Override
+    public Categories findcatById(int id) {
+          Categories cat = new Categories();
+        String requete = "select * from categories where id=?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(requete);
+            ps.setInt(1, id);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next()) {
+                cat.setId(resultat.getInt(1));
+                cat.setName(resultat.getString(2));
+            }
+            return cat;
 
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la recherche du depot " + ex.getMessage());
+            return null;
+        }
+    }
    
 
  
