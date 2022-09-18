@@ -116,7 +116,7 @@ public class FXMLregistrController implements Initializable {
             ps = cnx.prepareStatement(yy);
             rs = ps.executeQuery();
             if (rs.next()) {
-                Notification.notificationSuccess("Lgin deja existe", "Bienvenue, ");
+                Notification.notificationSuccess("Login deja existe", "Bienvenue, ");
                 //showMessageDialog(null, "login (username) deja existe");
             } else {
                 String nom = IDnom.getText();
