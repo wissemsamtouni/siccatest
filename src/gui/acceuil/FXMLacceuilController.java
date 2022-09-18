@@ -122,7 +122,7 @@ public class FXMLacceuilController implements Initializable {
         //MediaPlayer.play();
         mediaPlayer = new MediaPlayer(new Media(this.getClass().getResource(mediaurl).toExternalForm()));
         mediaPlayer.setAutoPlay(true);
-        mediaPlayer.setVolume(50);
+        mediaPlayer.setVolume(0);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaview.setMediaPlayer(mediaPlayer);
 

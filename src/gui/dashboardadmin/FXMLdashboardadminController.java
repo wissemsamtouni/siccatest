@@ -7,6 +7,10 @@ package gui.dashboardadmin;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
@@ -16,12 +20,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import util.Myconnexion;
 import util.Statics;
 
 /**
@@ -31,6 +37,8 @@ import util.Statics;
  */
 public class FXMLdashboardadminController implements Initializable {
 
+    
+    Connection cnx = Myconnexion.getInstance().getCnx();
     @FXML
     private Button IDpromo;
     @FXML
@@ -39,11 +47,14 @@ public class FXMLdashboardadminController implements Initializable {
     private Circle c1;
     @FXML
     private Circle c2;
+    
     private ImageView c3;
     @FXML
     private ImageView m1;
     @FXML
     private Button idusers;
+    @FXML
+    private Label stat;
 
     /**
      * Initializes the controller class.
@@ -55,6 +66,13 @@ public class FXMLdashboardadminController implements Initializable {
         setRotate(c2, true, 360, 10);
         setRotate(c1, true, 180, 18);
         setRotatedeux(m1, true, 360, 10);
+        
+        try {
+            stat.setText(String.valueOf(showusers()));
+        } catch (SQLException ex) {
+            //logger.getLogger(FXMLdashboardadminController.class.getName())
+            System.out.println(ex);
+        }
     }
 
     @FXML
@@ -115,5 +133,15 @@ public class FXMLdashboardadminController implements Initializable {
         stage.setTitle("liste des utilisateurs");
         stage.getIcons().add(new Image("gui/dashboardadmin/Untitled design (2).png"));
         stage.show();
+    }
+     public Integer showusers() throws SQLException {
+        int count = 0;
+        Statement stmt = cnx.createStatement();
+        String query = "select count(*) from utilisateur where role='Client'";
+        ResultSet rs = stmt.executeQuery(query);
+        rs.next();
+        count = rs.getInt(1);
+        return count;
+
     }
 }
