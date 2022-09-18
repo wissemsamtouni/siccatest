@@ -19,7 +19,7 @@
       </ImageView>
       <VBox layoutX="15.0" layoutY="133.0" prefHeight="288.0" prefWidth="127.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" style="-fx-background-color: #051a20;" text="+ Bonplan" textFill="WHITE">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" style="-fx-background-color: #051a20;" text="Ajouter un  Bonplan" textFill="WHITE">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
@@ -27,7 +27,7 @@
                   <Font name="System Italic" size="12.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: #051a20 #051a20;" text="+ Evennement" textFill="WHITE">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: #051a20 #051a20;" text="Ajouter un Evennement" textFill="WHITE">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
@@ -35,7 +35,7 @@
                   <Font name="System Italic" size="12.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: #051a20;" text="+ Materiel" textFill="WHITE">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: #051a20;" text="Ajouter un Materiel" textFill="WHITE">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
@@ -43,7 +43,7 @@
                   <Font name="System Italic" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="IDpromo" mnemonicParsing="false" onAction="#Promo" prefHeight="25.0" prefWidth="122.0" style="-fx-background-color: #051a20;" text="+ Promo" textFill="WHITE">
+            <Button fx:id="IDpromo" mnemonicParsing="false" onAction="#Promo" prefHeight="25.0" prefWidth="122.0" style="-fx-background-color: #051a20;" text="Ajouter un Promo" textFill="WHITE">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
@@ -51,7 +51,7 @@
                   <Font name="System Italic" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="idusers" mnemonicParsing="false" onAction="#listeutilisateurs" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #051a20;" text="liste des utilisateurs" textFill="WHITE">
+            <Button fx:id="idusers" mnemonicParsing="false" onAction="#listeutilisateurs" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #051a20;" text="Liste des utilisateurs" textFill="WHITE">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
@@ -75,7 +75,7 @@
             <Image url="@Untitled%20design%20(1).png" />
          </image>
       </ImageView>
-      <Label fx:id="stat" layoutX="208.0" layoutY="152.0" text="stat" textFill="WHITE">
+      <Label fx:id="stat" layoutX="219.0" layoutY="152.0" prefHeight="43.0" prefWidth="22.0" text="stat" textFill="WHITE">
          <font>
             <Font size="29.0" />
          </font>
