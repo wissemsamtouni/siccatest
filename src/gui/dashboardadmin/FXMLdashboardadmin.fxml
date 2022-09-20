@@ -7,6 +7,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
@@ -19,7 +22,7 @@
       </ImageView>
       <VBox layoutX="15.0" layoutY="133.0" prefHeight="288.0" prefWidth="127.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" style="-fx-background-color: #051a20;" text="Ajouter un  Bonplan" textFill="WHITE">
+            <Button fx:id="idbon" mnemonicParsing="false" onAction="#Ajouterevenement" prefHeight="25.0" prefWidth="123.0" style="-fx-background-color: linear-gradient(to bottom right,#476892,#59355D);" text="Ajouter un  Bonplan" textFill="WHITE">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
@@ -27,7 +30,7 @@
                   <Font name="System Italic" size="12.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: #051a20 #051a20;" text="Ajouter un Evennement" textFill="WHITE">
+            <Button fx:id="idevent" mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: linear-gradient(to bottom right,#476892,#59355D);" text="Ajouter un Evennement" textFill="WHITE">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
@@ -35,7 +38,7 @@
                   <Font name="System Italic" size="12.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: #051a20;" text="Ajouter un Materiel" textFill="WHITE">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: linear-gradient(to bottom right,#476892,#59355D);" text="Ajouter un Materiel" textFill="WHITE">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
@@ -43,7 +46,7 @@
                   <Font name="System Italic" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="IDpromo" mnemonicParsing="false" onAction="#Promo" prefHeight="25.0" prefWidth="122.0" style="-fx-background-color: #051a20;" text="Ajouter un Promo" textFill="WHITE">
+            <Button fx:id="IDpromo" mnemonicParsing="false" onAction="#Promo" prefHeight="25.0" prefWidth="122.0" style="-fx-background-color: linear-gradient(to bottom right,#476892,#59355D);" text="Ajouter un Promo" textFill="WHITE">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
@@ -51,7 +54,7 @@
                   <Font name="System Italic" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="idusers" mnemonicParsing="false" onAction="#listeutilisateurs" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #051a20;" text="Liste des utilisateurs" textFill="WHITE">
+            <Button fx:id="idusers" mnemonicParsing="false" onAction="#listeutilisateurs" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: linear-gradient(to bottom right,#476892,#59355D);" text="Liste des utilisateurs" textFill="WHITE">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
@@ -61,76 +64,173 @@
             </Button>
          </children>
       </VBox>
-      <Button fx:id="IDhome" layoutX="712.0" layoutY="27.0" mnemonicParsing="false" onAction="#Home" style="-fx-background-color: red;" text="Acceuil" textFill="WHITE" />
-      <Circle fill="#1f93ff00" layoutX="231.0" layoutY="173.0" radius="45.0" stroke="RED" strokeType="INSIDE" strokeWidth="7.0" />
+      <Button fx:id="IDhome" layoutX="707.0" layoutY="27.0" mnemonicParsing="false" onAction="#Home" style="-fx-background-color: linear-gradient(to bottom right,#FFDB01,#59355D);" text="Acceuil" textFill="WHITE" />
+      <Circle fill="#1f93ff00" layoutX="231.0" layoutY="173.0" radius="45.0" strokeType="INSIDE" strokeWidth="4.0">
+         <stroke>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </stroke></Circle>
       <Label layoutX="167.0" layoutY="230.0" prefHeight="25.0" prefWidth="139.0" text="Utilisateurs" textFill="#1aae13">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Circle fx:id="c1" fill="#0000008c" layoutX="78.0" layoutY="52.0" radius="50.0" stroke="#d01414" strokeType="INSIDE" strokeWidth="5.0" style="-fx-stroke-dash-array: 30;" />
+      <Circle fx:id="c1" fill="#0000008c" layoutX="78.0" layoutY="52.0" radius="50.0" stroke="#d01414" strokeType="INSIDE" strokeWidth="3.0" style="-fx-stroke-dash-array: 30;" />
       <Circle fx:id="c2" fill="#ffff003b" layoutX="78.0" layoutY="52.0" radius="40.0" stroke="#d6ae1c" strokeType="INSIDE" strokeWidth="2.0" style="-fx-stroke-dash-array: 13;" />
       <ImageView fx:id="m1" fitHeight="110.0" fitWidth="106.0" layoutX="26.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Untitled%20design%20(1).png" />
          </image>
       </ImageView>
-      <Label fx:id="stat" layoutX="219.0" layoutY="152.0" prefHeight="43.0" prefWidth="22.0" text="stat" textFill="WHITE">
+      <Label fx:id="stat" layoutX="224.0" layoutY="152.0" prefHeight="43.0" prefWidth="22.0" text="stat" textFill="WHITE">
          <font>
             <Font size="29.0" />
          </font>
       </Label>
-      <Circle fill="#1f93ff00" layoutX="395.0" layoutY="173.0" radius="45.0" stroke="RED" strokeType="INSIDE" strokeWidth="7.0" />
+      <Circle fill="#1f93ff00" layoutX="395.0" layoutY="173.0" radius="45.0" strokeType="INSIDE" strokeWidth="4.0">
+         <stroke>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color green="0.6857143044471741" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </stroke></Circle>
       <Label layoutX="333.0" layoutY="230.0" prefHeight="35.0" prefWidth="127.0" text=" Bonplan" textFill="#ff9a0c">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="372.0" layoutY="152.0" text="stat" textFill="WHITE">
+      <Label fx:id="statbp" layoutX="388.0" layoutY="152.0" prefHeight="43.0" prefWidth="16.0" text="0" textFill="WHITE">
          <font>
             <Font size="29.0" />
          </font>
       </Label>
-      <Circle fill="#1f93ff00" layoutX="551.0" layoutY="173.0" radius="45.0" stroke="RED" strokeType="INSIDE" strokeWidth="7.0" />
+      <Circle fill="#1f93ff00" layoutX="551.0" layoutY="173.0" radius="45.0" strokeType="INSIDE" strokeWidth="4.0">
+         <stroke>
+            <LinearGradient endX="1.0" endY="0.909952606635071">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </stroke></Circle>
       <Label layoutX="482.0" layoutY="230.0" prefHeight="35.0" prefWidth="145.0" text="Evennement" textFill="#1e728e">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="528.0" layoutY="152.0" text="stat" textFill="WHITE">
+      <Label fx:id="statevent" layoutX="544.0" layoutY="152.0" text="0" textFill="WHITE">
          <font>
             <Font size="29.0" />
          </font>
       </Label>
-      <Circle fill="#1f93ff00" layoutX="231.0" layoutY="322.0" radius="45.0" stroke="RED" strokeType="INSIDE" strokeWidth="7.0" />
+      <Circle fill="#1f93ff00" layoutX="231.0" layoutY="322.0" radius="45.0" strokeType="INSIDE" strokeWidth="5.0">
+         <stroke>
+            <LinearGradient endX="0.5165876777251185" endY="1.0" startX="0.4597156398104265">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" blue="0.07619047909975052" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </stroke></Circle>
       <Label layoutX="167.0" layoutY="386.0" prefHeight="17.0" prefWidth="139.0" text="Reservation" textFill="#796ef9">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="208.0" layoutY="301.0" text="stat" textFill="WHITE">
+      <Label fx:id="statreserv" layoutX="223.0" layoutY="301.0" text="0" textFill="WHITE">
          <font>
             <Font size="29.0" />
          </font>
       </Label>
-      <Circle fill="#1f93ff00" layoutX="396.0" layoutY="322.0" radius="45.0" stroke="RED" strokeType="INSIDE" strokeWidth="7.0" />
       <Label layoutX="343.0" layoutY="386.0" prefHeight="25.0" prefWidth="127.0" text=" Location" textFill="#796ef9">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="373.0" layoutY="301.0" text="stat" textFill="WHITE">
-         <font>
-            <Font size="29.0" />
-         </font>
-      </Label>
-      <Circle fill="#1f93ff00" layoutX="697.0" layoutY="173.0" radius="45.0" stroke="RED" strokeType="INSIDE" strokeWidth="7.0" />
+      <Circle fill="#1f93ff00" layoutX="697.0" layoutY="173.0" radius="45.0" strokeType="INSIDE" strokeWidth="4.0">
+         <stroke>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.1848341232227488">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" blue="0.7428571581840515" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </stroke></Circle>
       <Label layoutX="634.0" layoutY="230.0" prefHeight="35.0" prefWidth="127.0" text=" Materiels" textFill="#0059bf">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="674.0" layoutY="152.0" text="stat" textFill="WHITE">
+      <Label layoutX="688.0" layoutY="152.0" text="0" textFill="WHITE">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Circle fill="#1f93ff00" layoutX="395.0" layoutY="321.0" radius="45.0" strokeType="INSIDE" strokeWidth="5.0">
+         <stroke>
+            <LinearGradient endX="0.5165876777251185" endY="1.0" startX="0.4597156398104265">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" blue="0.07619047909975052" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </stroke>
+      </Circle>
+      <Label layoutX="387.0" layoutY="301.0" text="0" textFill="WHITE">
          <font>
             <Font size="29.0" />
          </font>

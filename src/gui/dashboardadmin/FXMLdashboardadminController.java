@@ -55,6 +55,16 @@ public class FXMLdashboardadminController implements Initializable {
     private Button idusers;
     @FXML
     private Label stat;
+    @FXML
+    private Button idevent;
+    @FXML
+    private Button idbon;
+    @FXML
+    private Label statbp;
+    @FXML
+    private Label statevent;
+    @FXML
+    private Label statreserv;
 
     /**
      * Initializes the controller class.
@@ -69,10 +79,13 @@ public class FXMLdashboardadminController implements Initializable {
         
         try {
             stat.setText(String.valueOf(showusers()));
+            statbp.setText(String.valueOf(showbonplan()));
         } catch (SQLException ex) {
             //logger.getLogger(FXMLdashboardadminController.class.getName())
             System.out.println(ex);
         }
+        
+        
     }
 
     @FXML
@@ -143,5 +156,25 @@ public class FXMLdashboardadminController implements Initializable {
         count = rs.getInt(1);
         return count;
 
+    }
+      public Integer showbonplan() throws SQLException {
+        int count = 0;
+        Statement stmt = cnx.createStatement();
+        String query = "select count(*) from bonplan";
+        ResultSet rs = stmt.executeQuery(query);
+        rs.next();
+        count = rs.getInt(1);
+        return count;
+      }
+    @FXML
+    private void Ajouterevenement(ActionEvent event) throws IOException {
+        Stage stage = (Stage) idevent.getScene().getWindow();
+        stage.close();
+        Parent root = FXMLLoader.load(getClass().getResource("../../gui/bonplan/Gestionbonplans.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Profil ");
+        stage.getIcons().add(new Image("gui/dashboardadmin/Untitled design (2).png"));
+        stage.show();
     }
 }

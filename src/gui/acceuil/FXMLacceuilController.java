@@ -212,4 +212,17 @@ public class FXMLacceuilController implements Initializable {
 
     }
 
+    @FXML
+    private void evenement(ActionEvent event) throws IOException {
+        Stage stage = (Stage) IDprofil.getScene().getWindow();
+        stage.close();
+        Parent root = FXMLLoader.load(getClass().getResource("../../gui/bonplan/market1.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Profil ");
+        stage.getIcons().add(new Image("gui/dashboardadmin/Untitled design (2).png"));
+        stage.show();
+        
+    }
+
 }
