@@ -73,7 +73,7 @@
                <children>
                   <Button fx:id="IDacceuil" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="78.0" style="-fx-background-color: #051a20;" text="Acceuil" textFill="WHITE" />
                   <Button fx:id="IDbonplans" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="74.0" style="-fx-background-color: #051a20;" text="Bonplans" textFill="WHITE" />
-                  <Button fx:id="IDevennements" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="98.0" style="-fx-background-color: #051a20;" text="Evennements" textFill="WHITE" />
+                  <Button fx:id="IDevennements" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#evenement" prefHeight="37.0" prefWidth="98.0" style="-fx-background-color: #051a20;" text="Evennements" textFill="WHITE" />
                   <Button fx:id="IDmateriels" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="93.0" style="-fx-background-color: #051a20;" text="materiels" textFill="WHITE" />
                   <Button fx:id="IDaboutus" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="81.0" style="-fx-background-color: #051a20;" text="About us " textAlignment="CENTER" textFill="WHITE">
                      <opaqueInsets>

@@ -55,6 +55,8 @@ public class FXMLdashboardadminController implements Initializable {
     private Button idusers;
     @FXML
     private Label stat;
+    @FXML
+    private Button idevent;
 
     /**
      * Initializes the controller class.
@@ -143,5 +145,18 @@ public class FXMLdashboardadminController implements Initializable {
         count = rs.getInt(1);
         return count;
 
+    }
+
+    @FXML
+    private void Ajouterevenement(ActionEvent event) throws IOException {
+        
+         Stage stage = (Stage) idusers.getScene().getWindow();
+        stage.close();
+        Parent root = FXMLLoader.load(getClass().getResource("../../gui/evenement/FXMLevenement.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("liste des utilisateurs");
+        stage.getIcons().add(new Image("gui/dashboardadmin/Untitled design (2).png"));
+        stage.show();
     }
 }

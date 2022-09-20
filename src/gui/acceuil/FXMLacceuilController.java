@@ -212,4 +212,16 @@ public class FXMLacceuilController implements Initializable {
 
     }
 
+    @FXML
+    private void evenement(ActionEvent event) throws IOException {
+         Stage stage = (Stage) IDevennements.getScene().getWindow();
+        stage.close();
+        Parent root = FXMLLoader.load(getClass().getResource("../../gui/reservation/market.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("liste des utilisateurs");
+        stage.getIcons().add(new Image("gui/dashboardadmin/Untitled design (2).png"));
+        stage.show();
+    }
+
 }
