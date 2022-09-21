@@ -86,6 +86,8 @@ public class FXMLacceuilController implements Initializable {
     private static final String mediaurl = "aaa.mp4";
     @FXML
     private ImageView idimage;
+    @FXML
+    private Button idpanier;
 
     /**
      * Initializes the controller class.
@@ -98,6 +100,7 @@ public class FXMLacceuilController implements Initializable {
             IDsignin.setVisible(true);
             IDprofil.setVisible(false);
             IDsignout.setVisible(false);
+            idpanier.setVisible(false);
 
         } else {
 
@@ -107,6 +110,7 @@ public class FXMLacceuilController implements Initializable {
             IDbonplans.setVisible(true);
             IDprofil.setVisible(true);
             IDsignin.setVisible(false);
+            idpanier.setVisible(true);
 
             IDlabel.setText("welcome " + Statics.current_user.getNom());
 
@@ -223,6 +227,35 @@ public class FXMLacceuilController implements Initializable {
         stage.getIcons().add(new Image("gui/dashboardadmin/Untitled design (2).png"));
         stage.show();
         
+    }
+
+    @FXML
+    private void enterevent(ActionEvent event) throws IOException {
+         Stage stage = (Stage) IDevennements.getScene().getWindow();
+        stage.close();
+        Parent root = FXMLLoader.load(getClass().getResource("../../gui/reservation/market.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("evenements");
+        stage.getIcons().add(new Image("gui/dashboardadmin/Untitled design (2).png"));
+        stage.show();
+        
+        
+        
+    }
+
+  
+
+    @FXML
+    private void gotopanier(ActionEvent event) throws IOException {
+         Stage stage = (Stage) idpanier.getScene().getWindow();
+        stage.close();
+        Parent root = FXMLLoader.load(getClass().getResource("../../gui/compte/market.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("liste des utilisateurs");
+        stage.getIcons().add(new Image("gui/dashboardadmin/Untitled design (2).png"));
+        stage.show();
     }
 
 }

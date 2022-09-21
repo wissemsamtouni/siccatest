@@ -52,5 +52,9 @@ public class Notification {
         tray.setNotificationType(NotificationType.INFORMATION);
         tray.showAndDismiss(Duration.seconds(5));
     }
+
+    public static void notificationError(String le_chomp__et_ferieur_a_2, String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

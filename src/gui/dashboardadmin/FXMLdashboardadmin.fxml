@@ -30,7 +30,7 @@
                   <Font name="System Italic" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="idevent" mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: linear-gradient(to bottom right,#476892,#59355D);" text="Ajouter un Evennement" textFill="WHITE">
+            <Button fx:id="idevent" mnemonicParsing="false" onAction="#Ajouterevent" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: linear-gradient(to bottom right,#476892,#59355D);" text="Ajouter un Evennement" textFill="WHITE">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
@@ -94,7 +94,7 @@
             <Image url="@Untitled%20design%20(1).png" />
          </image>
       </ImageView>
-      <Label fx:id="stat" layoutX="224.0" layoutY="152.0" prefHeight="43.0" prefWidth="22.0" text="stat" textFill="WHITE">
+      <Label fx:id="stt" layoutX="215.0" layoutY="152.0" prefHeight="43.0" prefWidth="39.0" text="st" textFill="WHITE">
          <font>
             <Font size="29.0" />
          </font>
@@ -207,7 +207,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="688.0" layoutY="152.0" text="0" textFill="WHITE">
+      <Label fx:id="id" layoutX="688.0" layoutY="152.0" text="0" textFill="WHITE">
          <font>
             <Font size="29.0" />
          </font>

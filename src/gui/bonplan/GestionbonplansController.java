@@ -48,6 +48,7 @@ import services.Catcategories;
 import services.bpservice;
 
 import util.Myconnexion;
+import util.Notification;
 
 
 /**
@@ -145,6 +146,8 @@ public class GestionbonplansController implements Initializable {
     private TableColumn<Bonplans, Maps> colidmapbp;
     @FXML
     private TableColumn<Bonplans, Categories> colcategoriebonplans;
+    @FXML
+    private Button idretour;
 
 //    public GestionbonplansController() {
 //        this.tbp = FXCollections.observableArrayList();
@@ -181,12 +184,13 @@ public class GestionbonplansController implements Initializable {
     private void addbonplans(ActionEvent event) {
 
         if (tfbonplan.getText().equals("")) {
-            showMessageDialog(null, "le chomp bonplan est vide");
+//            showMessageDialog(null, "le chomp bonplan est vide");
+            Notification.notificationError("le chomp bonplan est vide", "");
             tfbonplan.requestFocus();
 
         } else if (tfbonplan.getText().length() <= 2) {
-            showMessageDialog(null, "le chomp  et ferieur a 2");
-
+//            showMessageDialog(null, "le chomp  et ferieur a 2");
+  Notification.notificationError("le chomp  et ferieur a 2", "");
             tfbonplan.requestFocus();
 //                    } else if ((!tfbonplan.getText().matches("[A-Za-z]"))) {
 //            showMessageDialog(null, "ajouter des caractères");
@@ -194,31 +198,38 @@ public class GestionbonplansController implements Initializable {
             ///////////
 
         } else if (cbcategorie.getValue().equals("")) {
-            showMessageDialog(null, "le chomp type categorie est vide");
+//            showMessageDialog(null, "le chomp type categorie est vide");
+             Notification.notificationError("le chomp type categorie est vide", "");
             cbcategorie.requestFocus();
         } ////////////
         else if (tfadresse.getText().equals("")) {
-            showMessageDialog(null, "le chomp adresse est vide");
+//            showMessageDialog(null, "le chomp adresse est vide");
+             Notification.notificationError("le chomp adresse est vide", "");
             tfadresse.requestFocus();
         } ////
         else if (taimage.getText().equals("")) {
-            showMessageDialog(null, "le chomp image est vide");
+//            showMessageDialog(null, "le chomp image est vide");
+           Notification.notificationError("le chomp image est vide", "");
             taimage.requestFocus();
 
             /////////////
         } else if (tffrais.getText().equals("")) {
-            showMessageDialog(null, "le chomp Frais est vide");
+//            showMessageDialog(null, "le chomp Frais est vide");
+             Notification.notificationError("le chomp Frais est vide", "");
             tffrais.requestFocus();
         } else if ((tffrais.getText().matches("[A-Za-z]"))) {
-            showMessageDialog(null, "ajouter des caractères");
+//            showMessageDialog(null, "ajouter des caractères");
+              Notification.notificationError("ajouter des caractères", "");
 
             tffrais.requestFocus();
 
         } else if (tadescription.getText().equals("")) {
-            showMessageDialog(null, "le chomp description est vide");
+//            showMessageDialog(null, "le chomp description est vide");
+            Notification.notificationError("le chomp description est vide", "");
             tadescription.requestFocus();
         } else if (tfhoraire.getText().equals("")) {
-            showMessageDialog(null, "le chomp Horaire est vide");
+//            showMessageDialog(null, "le chomp Horaire est vide");
+             Notification.notificationError("le chomp Horaire est vide", "");
             tfhoraire.requestFocus();
         } else {
             Bpinerface bt = new bpservice();
@@ -230,8 +241,8 @@ public class GestionbonplansController implements Initializable {
             bp.setMaps(generatedMaps);
             bt.ajouterBP(bp);
 
-            showMessageDialog(null, "Bonplans ajouter avec succes");
-            annuler();
+//            showMessageDialog(null, "Bonplans ajouter avec succes");
+               Notification.notificationSuccess("Bonplans ajouter avec succes","");
             affichetablebp();
               affichetabmap() ;
           
@@ -249,7 +260,8 @@ public class GestionbonplansController implements Initializable {
         Bonplans bp = new Bonplans(Integer.parseInt(tfidplan.getText()), tfbonplan.getText(), cbcategorie.getValue(), tfadresse.getText(), tadescription.getText(), String.valueOf(xxx), Double.parseDouble(tffrais.getText()), tfhoraire.getText());
         bp.setMaps(generatedMaps);
         bt.modifierBP(bp);
-        showMessageDialog(null, "Bonplan Modifier avec succes");
+//        showMessageDialog(null, "Bonplan Modifier avec succes");
+        Notification.notificationSuccess("Bonplan Modifier avec succes","");
         annuler();
         affichetablebp();
           affichetabmap() ;
@@ -272,7 +284,8 @@ public class GestionbonplansController implements Initializable {
             Bonplans bp = new Bonplans(Integer.parseInt(tfidplan.getText()), tfbonplan.getText(), cbcategorie.getValue(), tfadresse.getText(), tadescription.getText(), String.valueOf(xxx), Double.parseDouble(tffrais.getText()), tfhoraire.getText());
             bp.setMaps(generatedMaps);
             bt.supprimerBP(bp);
-            showMessageDialog(null, "Bonplan Supprimer avec succes");
+//            showMessageDialog(null, "Bonplan Supprimer avec succes");
+                    Notification.notificationSuccess("Bonplan Supprimer avec succes","");
             annuler();
             affichetablebp();
             affichetabmap() ;
@@ -310,35 +323,6 @@ public class GestionbonplansController implements Initializable {
         tvbonplan1.setItems(mpb);
     }
 
-    ////////***** deuxieme méthoder******///////
-//    private void modifycat(ActionEvent event) throws SQLException {
-//        PreparedStatement ps;
-//        ResultSet rs;
-//        Integer id = Integer.parseInt(txtid.getText());
-//        String x = tfcategorie.getText();
-//        String yy = "update categorie set type_categorie ='" + x + "'  where id = '" + id + "' ";
-//        ps = cnx.prepareStatement(yy);
-//        ps.executeUpdate();
-//
-//        showMessageDialog(null, "categorie  modifier  avec succes");
-//        tfcategorie.clear();
-//        showtabcat() ;
-//    }
-//  
-    ////////***** deuxieme méthoder******///////
-//    private void deletecat(ActionEvent event) throws SQLException {
-//        PreparedStatement ps;
-//        ResultSet rs;
-//        Integer id = Integer.parseInt(txtid.getText());
-//
-//        String yy = "delete   from  categorie where id = '" + id + "' ";
-//        ps = cnx.prepareStatement(yy);
-//        ps.execute();
-//
-//        showMessageDialog(null, "categorie  supprimer avec succes");
-//        tfcategorie.clear();
-//        showtabcat(); 
-//    }
     @FXML
     void getSelected1(MouseEvent event) {
 
@@ -464,6 +448,18 @@ public class GestionbonplansController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
 
+        stage.show();
+    }
+
+    @FXML
+    private void Retour(ActionEvent event) throws IOException {
+          Stage stage = (Stage) idretour.getScene().getWindow();
+        stage.close();
+        Parent root = FXMLLoader.load(getClass().getResource("../../gui/dashboardadmin/FXMLdashboardadmin.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Login ");
+        stage.getIcons().add(new Image("gui/dashboardadmin/Untitled design (2).png"));
         stage.show();
     }
 

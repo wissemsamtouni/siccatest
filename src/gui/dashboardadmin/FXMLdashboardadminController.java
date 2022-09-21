@@ -53,8 +53,7 @@ public class FXMLdashboardadminController implements Initializable {
     private ImageView m1;
     @FXML
     private Button idusers;
-    @FXML
-    private Label stat;
+    
     @FXML
     private Button idevent;
     @FXML
@@ -65,6 +64,10 @@ public class FXMLdashboardadminController implements Initializable {
     private Label statevent;
     @FXML
     private Label statreserv;
+    @FXML
+    private Label stt;
+    @FXML
+    private Label id;
 
     /**
      * Initializes the controller class.
@@ -78,8 +81,9 @@ public class FXMLdashboardadminController implements Initializable {
         setRotatedeux(m1, true, 360, 10);
         
         try {
-            stat.setText(String.valueOf(showusers()));
+            stt.setText(String.valueOf(showusers()));
             statbp.setText(String.valueOf(showbonplan()));
+            statevent.setText(String.valueOf(showevent()));
         } catch (SQLException ex) {
             //logger.getLogger(FXMLdashboardadminController.class.getName())
             System.out.println(ex);
@@ -166,6 +170,15 @@ public class FXMLdashboardadminController implements Initializable {
         count = rs.getInt(1);
         return count;
       }
+       public Integer showevent() throws SQLException {
+        int count = 0;
+        Statement stmt = cnx.createStatement();
+        String query = "select count(*) from evennement";
+        ResultSet rs = stmt.executeQuery(query);
+        rs.next();
+        count = rs.getInt(1);
+        return count;
+      }
     @FXML
     private void Ajouterevenement(ActionEvent event) throws IOException {
         Stage stage = (Stage) idevent.getScene().getWindow();
@@ -174,6 +187,18 @@ public class FXMLdashboardadminController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Profil ");
+        stage.getIcons().add(new Image("gui/dashboardadmin/Untitled design (2).png"));
+        stage.show();
+    }
+
+    @FXML
+    private void Ajouterevent(ActionEvent event) throws IOException {
+         Stage stage = (Stage) idevent.getScene().getWindow();
+        stage.close();
+        Parent root = FXMLLoader.load(getClass().getResource("../../gui/evenement/FXMLevenement.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Gestion events");
         stage.getIcons().add(new Image("gui/dashboardadmin/Untitled design (2).png"));
         stage.show();
     }

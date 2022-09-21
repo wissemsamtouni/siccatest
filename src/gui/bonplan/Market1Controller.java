@@ -35,6 +35,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import model.Evenement;
 import services.Catcategories;
 import services.bpservice;
 import siccatest.NewFXMain;
@@ -177,6 +178,11 @@ public class Market1Controller implements Initializable {
                     public void onClickListener(Bonplans bpl) {
                         setChosenBonplans(bpl);
                     }
+
+                    @Override
+                    public void onClickListener(Evenement bpl) {
+                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    }
                 };
             }
             int column = 0;
@@ -241,6 +247,11 @@ public class Market1Controller implements Initializable {
                     @Override
                     public void onClickListener(Bonplans bpl) {
                         setChosenBonplans(bpl);
+                    }
+
+                    @Override
+                    public void onClickListener(Evenement bpl) {
+                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                     }
                 };
             }

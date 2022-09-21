@@ -32,6 +32,7 @@ import static javax.swing.JOptionPane.showMessageDialog;
 import model.Bonplans;
 import model.Categories;
 import services.bpservice;
+import util.Notification;
 
 /**
  * FXML Controller class
@@ -65,18 +66,21 @@ ObservableList<Categories> tbc = FXCollections.observableArrayList();
     @FXML
     private void ajoutercategorie(ActionEvent event) {
          if(tfcategorie.getText().equals("")){
-            showMessageDialog(null, "le chomp categorie est vide");
+//            showMessageDialog(null, "le chomp categorie est vide");
+                  Notification.notificationError("le chomp categorie est vide", "");
             
         tfcategorie.requestFocus();
         }
                 else if ((!tfcategorie.getText().matches("[A-Za-z]") )){
-                showMessageDialog(null, "ajouter des caractères");
+//                showMessageDialog(null, "ajouter des caractères");
+                   Notification.notificationError("ajouter des caractères", "");
             
         tfcategorie.requestFocus(); 
          }
        
           else if(tfcategorie.getText().length()<=2){
-                  showMessageDialog(null, "le chomp  et ferieur a 2");
+//                  showMessageDialog(null, "le chomp  et ferieur a 2");
+                    Notification.notificationError("le chomp  et ferieur a 2", "");
             
         tfcategorie.requestFocus();
           } 
@@ -85,7 +89,8 @@ ObservableList<Categories> tbc = FXCollections.observableArrayList();
         Categories c = new Categories(tfcategorie.getText());
         ct.ajoutercategorie(c);
         affichercategorie();
-        showMessageDialog(null, "categorie ajouter avec succes");
+//        showMessageDialog(null, "categorie ajouter avec succes");
+          Notification.notificationSuccess("categorie ajouter avec succes", "");
         
     }
     }
@@ -95,7 +100,8 @@ ObservableList<Categories> tbc = FXCollections.observableArrayList();
          Icategories ct = new Catcategories();
         Categories c = new Categories(Integer.parseInt(idcategorie.getText()),tfcategorie.getText());
         ct.modifiercategories(c);
-        showMessageDialog(null, "categorie modifier avec succes");
+//        showMessageDialog(null, "categorie modifier avec succes");
+          Notification.notificationSuccess("categorie modifier avec succes", "");
         affichercategorie();
     }
 
@@ -111,7 +117,8 @@ ObservableList<Categories> tbc = FXCollections.observableArrayList();
                Icategories ct = new Catcategories();
         Categories c = new Categories(Integer.parseInt(idcategorie.getText()),tfcategorie.getText());
         ct.supprimercategorie(c);
-        showMessageDialog(null, "categorie supprimer avec succes");
+//        showMessageDialog(null, "categorie supprimer avec succes");
+          Notification.notificationSuccess("categorie supprimer avec succes", "");
         affichercategorie();
     }}
     
